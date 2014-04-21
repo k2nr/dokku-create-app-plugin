@@ -12,6 +12,7 @@ case "$1" in
     mkdir $APP_DIR
     chown dokku $APP_DIR
     chgrp dokku $APP_DIR
+    chmod 775   $APP_DIR
     ;;
 
   help)
