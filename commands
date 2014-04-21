@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+set -eo pipefail; [[ $DOKKU_TRACE ]] && set -x
+
+case "$1" in
+  create)
+    APP="$2"
+    APP_DIR=$DOKKU_ROOT/$APP
+    if [[ -d "$APP_DIR" ]]; then
+      echo "$APP already exists"
+      exit 0
+    fi
+    mkdir $APP_DIR
+    chown dokku $APP_DIR
+    chgrp dokku $APP_DIR
+    ;;
+
+  help)
+    cat && cat<<EOF
+    create <app>           create empty app
+EOF
+    ;;
+esac
